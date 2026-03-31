@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOCKUP: Per-Row "Book This Route" CTA — Desktop + Mobile</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f6fa; color: #1a1a2e; }
+  a { text-decoration: none; color: inherit; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
+
+  /* MOCKUP BADGE */
+  .mockup-badge { background: #fefce8; border: 1px solid #facc15; border-radius: 12px; padding: 16px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+  .mockup-badge .icon { font-size: 24px; }
+  .mockup-badge .title { font-weight: 700; font-size: 14px; }
+  .mockup-badge .sub { font-size: 12px; color: #6b7280; margin-top: 2px; }
+
+  /* ANNOTATION */
+  .annotation { display: flex; align-items: flex-start; gap: 8px; margin: 16px 0; padding: 12px; border-radius: 8px; }
+  .annotation .num { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .annotation .label { font-size: 13px; font-weight: 600; }
+  .annotation .desc { font-size: 12px; color: #6b7280; margin-top: 2px; line-height: 1.5; }
+
+  /* SECTION */
+  .section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; margin-bottom: 8px; margin-top: 32px; padding-bottom: 8px; border-bottom: 1px solid #e5e7eb; }
+
+  /* ─── OPTION HEADER ─── */
+  .option-header { display: flex; align-items: center; gap: 10px; margin: 28px 0 12px; }
+  .option-tag { padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #fff; }
+  .option-title { font-size: 16px; font-weight: 700; }
+  .option-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+
+  /* ─── DEVICE FRAMES ─── */
+  .split-view { display: flex; gap: 24px; align-items: flex-start; margin-bottom: 12px; }
+  .device-frame { border-radius: 12px; border: 1px solid #e5e7eb; background: #fff; overflow: hidden; }
+  .device-frame.desktop { flex: 1; }
+  .device-frame.mobile { width: 375px; flex-shrink: 0; }
+  .device-bar { background: #f9fafb; border-bottom: 1px solid #e5e7eb; padding: 6px 12px; display: flex; align-items: center; gap: 6px; }
+  .device-bar .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .device-bar .dot.r { background: #ef4444; }
+  .device-bar .dot.y { background: #f59e0b; }
+  .device-bar .dot.g { background: #22c55e; }
+  .device-bar .device-label { font-size: 10px; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.5px; margin-left: auto; }
+  .device-content { padding: 0; }
+
+  /* ─── SHARED FLIGHT ROW STYLES ─── */
+  .table-head { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid #f3f4f6; }
+  .table-head span { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #6b7280; }
+
+  .status-badge { font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 999px; white-space: nowrap; display: inline-block; }
+  .status-green { background: #dcfce7; color: #166534; }
+  .status-red { background: #fee2e2; color: #991b1b; }
+  .status-yellow { background: #fef9c3; color: #854d0e; }
+
+  .btn-green { padding: 6px 14px; border-radius: 8px; border: none; background: #00C853; color: #fff; font-weight: 600; font-size: 12px; cursor: pointer; white-space: nowrap; }
+  .btn-green:hover { background: #00b248; }
+  .btn-green-outline { padding: 6px 14px; border-radius: 8px; border: 1.5px solid #00C853; background: transparent; color: #00C853; font-weight: 600; font-size: 12px; cursor: pointer; white-space: nowrap; }
+  .btn-green-outline:hover { background: #f0fdf4; }
+  .btn-green-sm { padding: 8px 16px; border-radius: 8px; border: none; background: #00C853; color: #fff; font-weight: 600; font-size: 13px; cursor: pointer; white-space: nowrap; width: 100%; }
+
+  /* ═══════════════════════════════════════════════
+     OPTION A: Always-visible compact button
+     ═══════════════════════════════════════════════ */
+
+  /* Desktop row – Option A */
+  .row-a-desktop { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid #f3f4f6; transition: background 0.15s; }
+  .row-a-desktop:hover { background: #f9fafb; }
+  .row-a-desktop .left { display: flex; align-items: center; gap: 16px; flex: 1; }
+  .row-a-desktop .flight-num { width: 64px; font-size: 14px; font-weight: 600; }
+  .row-a-desktop .route { display: flex; align-items: center; gap: 10px; flex: 1; }
+  .row-a-desktop .city { min-width: 65px; }
+  .row-a-desktop .city.r { text-align: right; }
+  .row-a-desktop .city .time { font-size: 14px; font-weight: 600; }
+  .row-a-desktop .city .code { font-size: 12px; color: #6b7280; }
+  .row-a-desktop .line { flex: 1; max-width: 90px; display: flex; align-items: center; gap: 4px; }
+  .row-a-desktop .line .dash { height: 1px; flex: 1; background: #d1d5db; }
+  .row-a-desktop .line .plane { color: #9ca3af; font-size: 11px; }
+  .row-a-desktop .right-side { display: flex; align-items: center; gap: 10px; }
+
+  /* Mobile row – Option A */
+  .row-a-mobile { padding: 12px 16px; border-bottom: 1px solid #f3f4f6; }
+  .row-a-mobile .top-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .row-a-mobile .flight-num { font-size: 13px; font-weight: 600; }
+  .row-a-mobile .route-line { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .row-a-mobile .city { min-width: 50px; }
+  .row-a-mobile .city.r { text-align: right; }
+  .row-a-mobile .city .time { font-size: 15px; font-weight: 600; }
+  .row-a-mobile .city .code { font-size: 11px; color: #6b7280; }
+  .row-a-mobile .line { flex: 1; display: flex; align-items: center; gap: 3px; }
+  .row-a-mobile .line .dash { height: 1px; flex: 1; background: #d1d5db; }
+  .row-a-mobile .line .plane { color: #9ca3af; font-size: 10px; }
+  .row-a-mobile .bottom-row { display: flex; align-items: center; justify-content: space-between; }
+
+  /* ═══════════════════════════════════════════════
+     OPTION B: Expandable row (tap to reveal)
+     ═══════════════════════════════════════════════ */
+
+  /* Desktop row – Option B (same as A desktop, hover reveals) */
+  .row-b-desktop { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid #f3f4f6; transition: background 0.15s; }
+  .row-b-desktop:hover { background: #f9fafb; }
+  .row-b-desktop:hover .book-hover { opacity: 1; }
+  .row-b-desktop .left { display: flex; align-items: center; gap: 16px; flex: 1; }
+  .row-b-desktop .flight-num { width: 64px; font-size: 14px; font-weight: 600; }
+  .row-b-desktop .route { display: flex; align-items: center; gap: 10px; flex: 1; }
+  .row-b-desktop .city { min-width: 65px; }
+  .row-b-desktop .city.r { text-align: right; }
+  .row-b-desktop .city .time { font-size: 14px; font-weight: 600; }
+  .row-b-desktop .city .code { font-size: 12px; color: #6b7280; }
+  .row-b-desktop .line { flex: 1; max-width: 90px; display: flex; align-items: center; gap: 4px; }
+  .row-b-desktop .line .dash { height: 1px; flex: 1; background: #d1d5db; }
+  .row-b-desktop .line .plane { color: #9ca3af; font-size: 11px; }
+  .row-b-desktop .right-side { display: flex; align-items: center; gap: 10px; }
+  .book-hover { opacity: 0; transition: opacity 0.2s; }
+
+  /* Mobile row – Option B */
+  .row-b-mobile { border-bottom: 1px solid #f3f4f6; }
+  .row-b-mobile .main-row { padding: 12px 16px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; }
+  .row-b-mobile .main-row .left { display: flex; align-items: center; gap: 8px; flex: 1; }
+  .row-b-mobile .flight-num { font-size: 13px; font-weight: 600; min-width: 54px; }
+  .row-b-mobile .route-compact { display: flex; align-items: center; gap: 6px; flex: 1; }
+  .row-b-mobile .city { min-width: 45px; }
+  .row-b-mobile .city.r { text-align: right; }
+  .row-b-mobile .city .time { font-size: 14px; font-weight: 600; }
+  .row-b-mobile .city .code { font-size: 11px; color: #6b7280; }
+  .row-b-mobile .line { flex: 1; max-width: 60px; display: flex; align-items: center; gap: 3px; }
+  .row-b-mobile .line .dash { height: 1px; flex: 1; background: #d1d5db; }
+  .row-b-mobile .line .plane { color: #9ca3af; font-size: 10px; }
+  .row-b-mobile .right-side { display: flex; align-items: center; gap: 6px; }
+  .row-b-mobile .chevron { color: #9ca3af; font-size: 16px; transition: transform 0.2s; }
+  .row-b-mobile .chevron.open { transform: rotate(180deg); }
+  .row-b-mobile .expand-panel { background: #f9fafb; padding: 12px 16px; border-top: 1px solid #f3f4f6; display: none; }
+  .row-b-mobile .expand-panel.show { display: block; }
+  .row-b-mobile .expand-panel .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+  .row-b-mobile .expand-panel .detail-item .label { font-size: 10px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+  .row-b-mobile .expand-panel .detail-item .value { font-size: 13px; font-weight: 600; }
+
+  /* ═══════════════════════════════════════════════
+     OPTION C: Swipe-to-reveal (mobile) / hover (desktop)
+     ═══════════════════════════════════════════════ */
+
+  .row-c-mobile { border-bottom: 1px solid #f3f4f6; position: relative; overflow: hidden; }
+  .row-c-mobile .swipe-under { position: absolute; right: 0; top: 0; bottom: 0; width: 120px; background: #00C853; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600; font-size: 13px; }
+  .row-c-mobile .swipe-content { position: relative; background: #fff; padding: 12px 16px; transition: transform 0.3s; z-index: 1; }
+  .row-c-mobile .swipe-content.swiped { transform: translateX(-120px); }
+  .row-c-mobile .top-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .row-c-mobile .flight-num { font-size: 13px; font-weight: 600; }
+  .row-c-mobile .route-line { display: flex; align-items: center; gap: 8px; }
+  .row-c-mobile .city { min-width: 50px; }
+  .row-c-mobile .city.r { text-align: right; }
+  .row-c-mobile .city .time { font-size: 15px; font-weight: 600; }
+  .row-c-mobile .city .code { font-size: 11px; color: #6b7280; }
+  .row-c-mobile .line { flex: 1; display: flex; align-items: center; gap: 3px; }
+  .row-c-mobile .line .dash { height: 1px; flex: 1; background: #d1d5db; }
+  .row-c-mobile .line .plane { color: #9ca3af; font-size: 10px; }
+  .swipe-hint { display: flex; align-items: center; gap: 4px; font-size: 11px; color: #9ca3af; padding: 4px 16px 8px; }
+  .swipe-hint .arrow { animation: swipeHint 1.5s ease-in-out infinite; }
+  @keyframes swipeHint { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-8px); } }
+
+  /* ─── Recommendation banner ─── */
+  .recommend { background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); border: 2px solid #00C853; border-radius: 12px; padding: 16px; margin: 20px 0; display: flex; align-items: flex-start; gap: 10px; }
+  .recommend .star { font-size: 20px; }
+  .recommend .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; background: #00C853; color: #fff; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .recommend .title { font-size: 14px; font-weight: 700; color: #1a1a2e; }
+  .recommend .desc { font-size: 12px; color: #6b7280; line-height: 1.5; margin-top: 4px; }
+
+  @media (max-width: 900px) {
+    .split-view { flex-direction: column; }
+    .device-frame.mobile { width: 100%; max-width: 400px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- MOCKUP BADGE -->
+  <div class="mockup-badge">
+    <div class="icon">🎨</div>
+    <div>
+      <div class="title">MOCKUP: Per-Row "Book This Route" CTA — Desktop & Mobile</div>
+      <div class="sub">Always-visible booking CTA on each flight status row. Outlined style on desktop, full-width button on mobile. Designed to move conversion from 0.07%.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       OPTION A: Always-visible compact button
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="option-header">
+    <div class="option-tag" style="background: #8B5CF6;">✓</div>
+    <div class="option-title">Always-Visible Compact Button</div>
+  </div>
+  <div class="option-subtitle">The CTA is always showing — no interaction needed to reveal it. On desktop it sits inline in the row as a subtle outlined button; on mobile it becomes a full-width button below the route info. Works identically on all devices, zero discovery problem.</div>
+
+  <div class="split-view">
+    <!-- Desktop -->
+    <div class="device-frame desktop">
+      <div class="device-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <span class="device-label">Desktop</span>
+      </div>
+      <div class="device-content">
+        <div class="table-head"><span>Emirates Departures — March 31, 2026</span></div>
+
+        <div class="row-a-desktop">
+          <div class="left">
+            <div class="flight-num">EK 231</div>
+            <div class="route">
+              <div class="city r"><div class="time">08:30</div><div class="code">DXB</div></div>
+              <div class="line"><div class="dash"></div><span class="plane">✈</span><div class="dash"></div></div>
+              <div class="city"><div class="time">12:45</div><div class="code">LHR</div></div>
+            </div>
+          </div>
+          <div class="right-side">
+            <span class="status-badge status-green">On Time</span>
+            <button class="btn-green-outline">Book DXB → LHR</button>
+          </div>
+        </div>
+
+        <div class="row-a-desktop">
+          <div class="left">
+            <div class="flight-num">EK 524</div>
+            <div class="route">
+              <div class="city r"><div class="time">09:15</div><div class="code">DXB</div></div>
+              <div class="line"><div class="dash"></div><span class="plane">✈</span><div class="dash"></div></div>
+              <div class="city"><div class="time">13:50</div><div class="code">BOM</div></div>
+            </div>
+          </div>
+          <div class="right-side">
+            <span class="status-badge status-green">On Time</span>
+            <button class="btn-green-outline">Book DXB → BOM</button>
+          </div>
+        </div>
+
+        <div class="row-a-desktop">
+          <div class="left">
+            <div class="flight-num">EK 412</div>
+            <div class="route">
+              <div class="city r"><div class="time">10:05</div><div class="code">DXB</div></div>
+              <div class="line"><div class="dash"></div><span class="plane">✈</span><div class="dash"></div></div>
+              <div class="city"><div class="time">06:30+1</div><div class="code">SYD</div></div>
+            </div>
+          </div>
+          <div class="right-side">
+            <span class="status-badge status-red">Delayed</span>
+            <button class="btn-green-outline">Book DXB → SYD</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile -->
+    <div class="device-frame mobile">
+      <div class="device-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <span class="device-label">Mobile (375px)</span>
+      </div>
+      <div class="device-content">
+        <div class="table-head"><span>Emirates Departures</span></div>
+
+        <div class="row-a-mobile">
+          <div class="top-row">
+            <span class="flight-num">EK 231</span>
+            <span class="status-badge status-green">On Time</span>
+          </div>
+          <div class="route-line">
+            <div class="city r"><div class="time">08:30</div><div class="code">DXB</div></div>
+            <div class="line"><div class="dash"></div><span class="plane">✈</span><div class="dash"></div></div>
+            <div class="city"><div class="time">12:45</div><div class="code">LHR</div></div>
+          </div>
+          <div class="bottom-row">
+            <button class="btn-green-sm">Book DXB → LHR</button>
+          </div>
+        </div>
+
+        <div class="row-a-mobile">
+          <div class="top-row">
+            <span class="flight-num">EK 524</span>
+            <span class="status-badge status-green">On Time</span>
+          </div>
+          <div class="route-line">
+            <div class="city r"><div class="time">09:15</div><div class="code">DXB</div></div>
+            <div class="line"><div class="dash"></div><span class="plane">✈</span><div class="dash"></div></div>
+            <div class="city"><div class="time">13:50</div><div class="code">BOM</div></div>
+          </div>
+          <div class="bottom-row">
+            <button class="btn-green-sm">Book DXB → BOM</button>
+          </div>
+        </div>
+
+        <div class="row-a-mobile">
+          <div class="top-row">
+            <span class="flight-num">EK 412</span>
+            <span class="status-badge status-red">Delayed</span>
+          </div>
+          <div class="route-line">
+            <div class="city r"><div class="time">10:05</div><div class="code">DXB</div></div>
+            <div class="line"><div class="dash"></div><span class="plane">✈</span><div class="dash"></div></div>
+            <div class="city"><div class="time">06:30+1</div><div class="code">SYD</div></div>
+          </div>
+          <div class="bottom-row">
+            <button class="btn-green-sm">Book DXB → SYD</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="annotation" style="background: rgba(139,92,246,0.06); border: 1.5px dashed #8B5CF6;">
+    <div class="num" style="background: #8B5CF6;">✓</div>
+    <div>
+      <div class="label" style="color: #8B5CF6;">Why This Works</div>
+      <div class="desc">
+        <strong>Maximum visibility:</strong> Zero learning curve — the CTA is right there. No tap, no swipe, no discovery problem. Works identically on desktop and mobile.<br>
+        <strong>Contextually relevant:</strong> Each button is specific to the route the user is looking at. "Book Dubai → London" feels like a helpful suggestion, not a generic ad.<br>
+        <strong>Subtle design:</strong> The outlined button style doesn't overpower the flight status data — the status information remains the primary focus of the page. Mobile uses full city names instead of IATA codes for clarity.
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+</body>
+</html>
