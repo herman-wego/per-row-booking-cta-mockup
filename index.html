@@ -161,7 +161,7 @@
     <div>
       <div class="label" style="color: #0EA5E9;">What Changed vs. the Current Page</div>
       <div class="desc">
-        The only addition is a <strong>"Book [ORIGIN] → [DEST]" button</strong> on each row. Everything else — the Emirates logo, flight number, codeshare info, origin/destination with scheduled + actual times, terminal, flight path line, duration, status badge, share icon — is preserved exactly as it appears on the live page. The button dynamically pulls the origin and destination from each row.
+        The only addition is a <strong>"Check current prices" button</strong> on each row. Everything else — the Emirates logo, flight number, codeshare info, origin/destination with scheduled + actual times, terminal, flight path line, duration, status badge, share icon — is preserved exactly as it appears on the live page. The button links to Wego flight search with the row's origin and destination pre-filled.
       </div>
     </div>
   </div>
@@ -203,7 +203,7 @@
       <div class="d-duration">4h 34min</div>
       <div class="d-status"><span class="badge on-schedule">On Schedule</span></div>
       <div class="d-share">↗</div>
-      <button class="d-book-btn">Book DXB → CAI</button>
+      <button class="d-book-btn">Check current prices</button>
     </div>
 
     <!-- Row 2: CAI → DXB (delayed, with codeshare) -->
@@ -229,7 +229,7 @@
       <div class="d-duration">3h 32min</div>
       <div class="d-status"><span class="badge delayed">Delayed</span></div>
       <div class="d-share">↗</div>
-      <button class="d-book-btn">Book CAI → DXB</button>
+      <button class="d-book-btn">Check current prices</button>
     </div>
 
     <!-- Row 3: KHI → DXB (delayed) -->
@@ -254,7 +254,7 @@
       <div class="d-duration">2h 10min</div>
       <div class="d-status"><span class="badge delayed">Delayed</span></div>
       <div class="d-share">↗</div>
-      <button class="d-book-btn">Book KHI → DXB</button>
+      <button class="d-book-btn">Check current prices</button>
     </div>
 
     <!-- Row 4: DFW → DXB (on schedule) -->
@@ -279,7 +279,7 @@
       <div class="d-duration">15h 45min</div>
       <div class="d-status"><span class="badge on-schedule">On Schedule</span></div>
       <div class="d-share">↗</div>
-      <button class="d-book-btn">Book DFW → DXB</button>
+      <button class="d-book-btn">Check current prices</button>
     </div>
 
     <!-- Row 5: DXB → IST (on schedule, codeshare) -->
@@ -305,7 +305,7 @@
       <div class="d-duration">6h 28min</div>
       <div class="d-status"><span class="badge on-schedule">On Schedule</span></div>
       <div class="d-share">↗</div>
-      <button class="d-book-btn">Book DXB → IST</button>
+      <button class="d-book-btn">Check current prices</button>
     </div>
 
     <!-- Row 6: ACC → ABJ (delayed) -->
@@ -330,7 +330,7 @@
       <div class="d-duration">1h 1min</div>
       <div class="d-status"><span class="badge delayed">Delayed</span></div>
       <div class="d-share">↗</div>
-      <button class="d-book-btn">Book ACC → ABJ</button>
+      <button class="d-book-btn">Check current prices</button>
     </div>
   </div>
 
@@ -373,7 +373,7 @@
         <span class="m-duration">4h 34min</span>
         <div class="m-status"><span class="badge on-schedule">On Schedule</span></div>
       </div>
-      <button class="m-book-btn">Book DXB → CAI</button>
+      <button class="m-book-btn">Check current prices</button>
     </div>
 
     <!-- Row 2: CAI → DXB (delayed, codeshare) -->
@@ -403,7 +403,7 @@
         <span class="m-duration">3h 32min</span>
         <div class="m-status"><span class="badge delayed">Delayed</span></div>
       </div>
-      <button class="m-book-btn">Book CAI → DXB</button>
+      <button class="m-book-btn">Check current prices</button>
     </div>
 
     <!-- Row 3: KHI → DXB (delayed) -->
@@ -430,7 +430,7 @@
         <span class="m-duration">2h 10min</span>
         <div class="m-status"><span class="badge delayed">Delayed</span></div>
       </div>
-      <button class="m-book-btn">Book KHI → DXB</button>
+      <button class="m-book-btn">Check current prices</button>
     </div>
 
     <!-- Row 4: ACC → ABJ (delayed) -->
@@ -457,7 +457,7 @@
         <span class="m-duration">1h 1min</span>
         <div class="m-status"><span class="badge delayed">Delayed</span></div>
       </div>
-      <button class="m-book-btn">Book ACC → ABJ</button>
+      <button class="m-book-btn">Check current prices</button>
     </div>
   </div>
 
@@ -468,7 +468,7 @@
       <div class="label" style="color: #8B5CF6;">Design Decisions</div>
       <div class="desc">
         <strong>Preserves existing UI:</strong> Every element from the current flight status row is kept — Emirates logo, flight number, codeshare links, origin/dest with scheduled + actual times (strikethrough + red/green), terminal, flight path dots, duration, status badge, share icon. Nothing removed.<br><br>
-        <strong>Dynamic origin/destination:</strong> Each button reads the actual route from that row — "Book DXB → CAI", "Book CAI → DXB", "Book KHI → DXB", "Book ACC → ABJ", etc. Not hard-coded to Dubai.<br><br>
+        <strong>Soft CTA copy (per Faical's feedback):</strong> "Check current prices" feels informational — it matches the user's status-checking mindset. The link behind each button passes the correct origin → destination to Wego's flight search.<br><br>
         <strong>Desktop:</strong> Outlined button sits inline at the end of the row. Subtle enough to not overpower the status data, but always visible. Fills green on hover.<br><br>
         <strong>Mobile:</strong> Full-width outlined button below each row's duration/status line. Large enough touch target. Fills green on tap.
       </div>
